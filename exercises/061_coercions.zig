@@ -67,7 +67,8 @@ const print = @import("std").debug.print;
 pub fn main() void {
     var letter: u8 = 'A';
 
-    const my_letter:   ???   = &letter;
+    // NOTE: print indexes my_letter, hence it must be indexable
+    const my_letter: ?*[1]u8 = &letter;
     //               ^^^^^^^
     //           Your type here.
     // Must coerce from &letter (which is a *u8).
