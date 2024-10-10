@@ -21,7 +21,10 @@ pub fn main() void {
     const data: [*]const u8 = "Weird Data!";
 
     // Please cast 'data' to 'printable':
-    const printable: [*:0]const u8 = ???;
+    // NOTE: this can't be @ptrCast(&data) because data is already a pointer
+    // so we'd be casting to pointer to pointer e.g. *const [*]const u8
+    // print("{any}", .{@TypeOf(&data)});
+    const printable: [*:0]const u8 = @ptrCast(data);
 
     print("{s}\n", .{printable});
 }
